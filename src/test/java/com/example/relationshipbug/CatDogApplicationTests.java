@@ -57,9 +57,9 @@ class CatDogApplicationTests {
 
         Cat found = (Cat) animalRepository.findById(cat.getId()).get();
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(found.getName()).isNotEmpty();
-        softly.assertThat(found.getPerson()).isNotNull();
-        softly.assertThat(found.getToy()).isNotNull();
+        softly.assertThat(found.getName()).as("name").isNotEmpty();
+        softly.assertThat(found.getPerson()).as("person").isNotNull();
+        softly.assertThat(found.getToy()).as("toy").isNotNull();
         softly.assertAll();
     }
 
@@ -78,9 +78,9 @@ class CatDogApplicationTests {
 
         Dog found = (Dog) animalRepository.findById(dog.getId()).get();
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(found.getName()).isNotEmpty();
-        softly.assertThat(found.getPerson()).isNotNull();
-        softly.assertThat(found.getToy()).isNotNull();
+        softly.assertThat(found.getName()).as("name").isNotEmpty();
+        softly.assertThat(found.getPerson()).as("person").isNotNull();
+        softly.assertThat(found.getToy()).as("toy").isNotNull();
         softly.assertAll();
     }
 
@@ -99,9 +99,9 @@ class CatDogApplicationTests {
 
         CatAlt found = (CatAlt) animalAltRepository.findById(cat.getId()).get();
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(found.getName()).isNotEmpty();
-        softly.assertThat(found.getPerson()).isNotNull();
-        softly.assertThat(found.getToy()).isNotNull();
+        softly.assertThat(found.getName()).as("name").isNotEmpty();
+        softly.assertThat(found.getPerson()).as("person").isNotNull();
+        softly.assertThat(found.getToy()).as("toy").isNotNull();
         softly.assertAll();
     }
 
@@ -120,9 +120,9 @@ class CatDogApplicationTests {
 
         DogAlt found = (DogAlt) animalAltRepository.findById(dog.getId()).get();
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(found.getName()).isNotEmpty();
-        softly.assertThat(found.getPerson()).isNotNull();
-        softly.assertThat(found.getToy()).isNotNull();
+        softly.assertThat(found.getName()).as("name").isNotEmpty();
+        softly.assertThat(found.getPerson()).as("person").isNotNull();
+        softly.assertThat(found.getToy()).as("toy").isNotNull();
         softly.assertAll();
     }
 }
