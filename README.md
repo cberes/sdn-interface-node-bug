@@ -8,5 +8,5 @@ Don't forget to set database credentials in [application.properties](src/main/re
 
 ## Tests
 
-Run [tests](src/test/java/com/example/relationshipbug/CatDogApplicationTests.java) via `mvn clean build` or via an IDE.
+Run [tests](src/test/java/com/example/relationshipbug/CatDogApplicationTests.java) via `mvn clean install` or via an IDE.
 
