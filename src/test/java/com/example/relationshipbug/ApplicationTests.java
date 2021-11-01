@@ -7,23 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CatDogApplicationTests {
+class ApplicationTests {
     private final AnimalRepository animalRepository;
     private final AnimalAltRepository animalAltRepository;
     private final BoneRepository boneRepository;
     private final CatnipRepository catnipRepository;
     private final PersonRepository personRepository;
-    private final DogRepository dogRepository;
-    private final DogAltRepository dogAltRepository;
+    private final DogRepository dogRepository; // trying with "dummy" repository
+    private final DogAltRepository dogAltRepository; // trying with "dummy" repository
 
     @Autowired
-    CatDogApplicationTests(AnimalRepository animalRepository,
-                           AnimalAltRepository animalAltRepository,
-                           BoneRepository boneRepository,
-                           CatnipRepository catnipRepository,
-                           PersonRepository personRepository,
-                           DogRepository dogRepository,
-                           DogAltRepository dogAltRepository) {
+    ApplicationTests(AnimalRepository animalRepository,
+                     AnimalAltRepository animalAltRepository,
+                     BoneRepository boneRepository,
+                     CatnipRepository catnipRepository,
+                     PersonRepository personRepository,
+                     DogRepository dogRepository,
+                     DogAltRepository dogAltRepository) {
         this.animalRepository = animalRepository;
         this.animalAltRepository = animalAltRepository;
         this.boneRepository = boneRepository;
