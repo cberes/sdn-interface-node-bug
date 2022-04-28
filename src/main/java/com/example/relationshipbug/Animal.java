@@ -2,18 +2,17 @@ package com.example.relationshipbug;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.neo4j.core.schema.DynamicLabels;
 import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Relationship;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Getter
 @Setter
-@Node
-public abstract class Animal<T extends BaseEntity<T>> extends BaseEntity<Animal<T>> {
+@Node(primaryLabel = "TheAnimal")
+public abstract class Animal extends BaseEntity<Animal> {
     private String name;
 
-    @Relationship("PLAYS_WITH")
-    private T toy;
-
-    @Relationship("CARED_FOR_BY")
-    private Person person;
+    @DynamicLabels
+    private Set<String> labels = new TreeSet<>();
 }
