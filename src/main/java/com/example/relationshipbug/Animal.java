@@ -9,7 +9,7 @@ import java.util.TreeSet;
 
 @Getter
 @Setter
-@Node(primaryLabel = "TheAnimal")
+@Node
 public abstract class Animal extends BaseEntity<Animal> {
     private String name;
 
