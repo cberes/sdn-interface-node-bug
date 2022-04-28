@@ -5,6 +5,7 @@ inheritance and a non-empty `@DynamicLabels` field.
 
 For example, say you have super class
 
+    @Getter
     @Node
     public abstract class Animal {
       @DynamicLabels
@@ -31,10 +32,10 @@ You can query for instances of the `Cat` sub class only if they do not have a dy
 
     Cat cat2 = new Cat();
     cat2.getLabels().add("Orange");
-    animalRepository.save(cat);
+    animalRepository.save(cat2);
 
-    Cat found1 = (Cat) animalRepository.findById(cat.getId()).get(); // this is fine
-    Cat found2 = (Cat) animalRepository.findById(cat.getId()).get(); // BeanInstantiationException
+    Cat found1 = (Cat) animalRepository.findById(cat1.getId()).get(); // this is fine
+    Cat found2 = (Cat) animalRepository.findById(cat2.getId()).get(); // BeanInstantiationException
 
 The second query fails if the `Feline` sub class is abstract or concrete, though the exception is different.
 
