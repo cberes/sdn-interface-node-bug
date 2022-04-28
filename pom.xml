@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
+        <version>2.6.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>neo4j-relationship-bug</artifactId>
+    <artifactId>sdn-dynamic-labels-bug</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>neo4j-relationship-bug</name>
+    <name>sdn-dynamic-labels-bug</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>

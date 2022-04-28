@@ -34,17 +34,57 @@ class DynamicLabelsTest {
     }
 
     @Test
-    void saveCatWithDynamicLabel() {
+    void saveCatWithDynamicLabel() { // this will fail
         Cat cat = new Cat();
         cat.setName("Bones");
         cat.getLabels().add("Siamese");
-        cat.getLabels().add("MyOrangeCat");
         animalRepository.save(cat);
 
         Cat found = (Cat) animalRepository.findById(cat.getId()).get();
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(found.getName()).as("name").isNotEmpty();
         softly.assertThat(found.getLabels()).as("labels").contains("Siamese");
+        softly.assertAll();
+    }
+
+    @Test
+    void saveDog() {
+        Dog dog = new Dog();
+        dog.setName("Rufus");
+        animalRepository.save(dog);
+
+        Dog found = (Dog) animalRepository.findById(dog.getId()).get();
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(found.getName()).as("name").isNotEmpty();
+        softly.assertThat(found.getLabels()).as("labels").isEmpty();
+        softly.assertAll();
+    }
+
+    @Test
+    void saveDogWithDynamicLabel() { // this will fail
+        Dog dog = new Dog();
+        dog.setName("Rover");
+        dog.getLabels().add("PitBull");
+        animalRepository.save(dog);
+
+        Dog found = (Dog) animalRepository.findById(dog.getId()).get();
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(found.getName()).as("name").isNotEmpty();
+        softly.assertThat(found.getLabels()).as("labels").contains("PitBull");
+        softly.assertAll();
+    }
+
+    @Test
+    void saveBaseDogWithDynamicLabel() {
+        BaseDog dog = new BaseDog();
+        dog.setName("Chester");
+        dog.getLabels().add("PitBull");
+        animalRepository.save(dog);
+
+        BaseDog found = (BaseDog) animalRepository.findById(dog.getId()).get();
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(found.getName()).as("name").isNotEmpty();
+        softly.assertThat(found.getLabels()).as("labels").contains("PitBull");
         softly.assertAll();
     }
 }
