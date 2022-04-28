@@ -3,7 +3,7 @@
 [SDN](https://github.com/spring-projects/spring-data-neo4j) is unable to instantiate nodes with multiple levels of
 inheritance and a non-empty `@DynamicLabels` field.
 
-For example, say you have super class
+For example, say you have a super class
 
     @Getter
     @Node
