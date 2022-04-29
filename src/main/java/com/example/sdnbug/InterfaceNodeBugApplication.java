@@ -1,13 +1,13 @@
-package com.example.relationshipbug;
+package com.example.sdnbug;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DynamicLabelsBugApplication {
+public class InterfaceNodeBugApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DynamicLabelsBugApplication.class, args);
+        SpringApplication.run(InterfaceNodeBugApplication.class, args);
     }
 
 }

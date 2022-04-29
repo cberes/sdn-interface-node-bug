@@ -1,46 +1,41 @@
-# sdn-dynamic-labels-bug
+# sdn-interface-node-bug
 
-[SDN](https://github.com/spring-projects/spring-data-neo4j) is unable to instantiate nodes with multiple levels of
-inheritance and a non-empty `@DynamicLabels` field.
+[SDN](https://github.com/spring-projects/spring-data-neo4j) instantiates the wrong type depending on the order that nodes are saved.
 
-For example, say you have a super class
+For example, say you have this weird type hierarchy
 
-    @Getter
     @Node
     public abstract class Animal {
-      @DynamicLabels
-      private Set<String> labels = new TreeSet<>();
     }
-
-A sub class
 
     @Node
-    public abstract class Feline extends Animal {
+    public interface Cat {
     }
 
-And a sub class of the sub class
+    // No Node annotation!
+    public class DomesticCat extends Animal implements Cat {
+    }
 
     @Node
-    public class Cat extends Feline {
+    public class Tiger extends Animal implements Cat {
     }
 
-You can query for instances of the `Cat` sub class only if they do not have a dynamic label
+If you save and query for a `Tiger`, then save and query for a `DomesticCat`, the second node will be a `Tiger` instead
 
+    Tiger tiger = new tiger();
+    animalRepository.save(tiger);
 
-    Cat cat1 = new Cat();
-    animalRepository.save(cat1);
+    Tiger found1 = (Tiger) animalRepository.findById(tiger.getId()).get();
 
-    Cat cat2 = new Cat();
-    cat2.getLabels().add("Orange");
-    animalRepository.save(cat2);
+    DomesticCat cat = new DomesticCat();
+    animalRepository.save(cat);
 
-    Cat found1 = (Cat) animalRepository.findById(cat1.getId()).get(); // this is fine
-    Cat found2 = (Cat) animalRepository.findById(cat2.getId()).get(); // BeanInstantiationException
+    // error: found2 is a Tiger
+    DomesticCat found2 = (DomesticCat) animalRepository.findById(cat.getId()).get();
 
-The second query fails if the `Feline` sub class is abstract or concrete, though the exception is different.
+If you add `@Node` to `DomesticCat` or save and query in a different order, there are no errors.
 
 This example worked correctly in SDN 6.2.1 but it fails with SDN 6.2.4.
-
 
 ## Requirements
 
@@ -48,5 +43,7 @@ Don't forget to set database credentials in [application.properties](src/main/re
 
 ## Tests
 
-Run [tests](src/test/java/com/example/relationshipbug/DynamicLabelsTest.java) via `mvn clean install` or via an IDE.
+Run [tests](src/test/java/com/example/sdnbug/SaveTigerThenCatTest.java) via `mvn clean test -Dtest=SaveTigerThenCatTest` or via an IDE.
+
+If you run `mvn clean test`, the tests may run in a different order, which may allow all of them to succeed.
 

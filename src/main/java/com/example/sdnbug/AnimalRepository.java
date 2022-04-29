@@ -1,4 +1,4 @@
-package com.example.relationshipbug;
+package com.example.sdnbug;
 
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 

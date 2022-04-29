@@ -1,4 +1,4 @@
-package com.example.relationshipbug;
+package com.example.sdnbug;
 
 import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
